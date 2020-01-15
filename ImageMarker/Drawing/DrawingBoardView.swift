@@ -84,9 +84,11 @@ class DrawingBoardView: UIView,UIScrollViewDelegate,DrawingDelegate {
         appDelegate.rootController!.showMessage(msg: "路径"+(pathManager?.paths[at].name)!+"已删除")
         pathManager?.paths.remove(at: at)
         reloadImageView()
+        
         for each in pathManager!.paths{
             imageView.drawPath(ps: each.points, label: each.name)
         }
+        
         scrollImg.setZoomScale(zoomScale, animated: false)
     }
      

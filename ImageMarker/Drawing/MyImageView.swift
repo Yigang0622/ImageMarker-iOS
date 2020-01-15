@@ -20,9 +20,12 @@ class MyImageView: UIImageView {
     var ys = [CGFloat]()
     var labels = [UILabel]()
     
+    let drawImage = UIImage()
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         
+     
         if !shouldDraw{
             return
         }
@@ -38,7 +41,7 @@ class MyImageView: UIImageView {
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
-        
+    
         if !shouldDraw{
             return
         }
@@ -69,6 +72,7 @@ class MyImageView: UIImageView {
         // 2
         context.move(to: fromPoint)
         context.addLine(to: toPoint)
+        
 
         // 3
         context.setLineCap(.round)
@@ -84,11 +88,19 @@ class MyImageView: UIImageView {
         UIGraphicsEndImageContext()
     }
     
+ 
+    
+    
+    
+    
+    
     func removeLabels(){
         for each in labels{
             each.removeFromSuperview()
         }
     }
+    
+ 
     
     func drawPath(ps:[CGPoint], label:String){
         var point:CGPoint = ps[0]
@@ -99,12 +111,27 @@ class MyImageView: UIImageView {
         xs.append(point.x)
         ys.append(point.y)
         
+        UIGraphicsBeginImageContext(self.image!.size)
+        guard let context = UIGraphicsGetCurrentContext() else {
+           return
+        }
+        self.image?.draw(in: self.bounds)
+        
         for i  in 1...ps.count - 1{
-            drawLine(from: point, to: ps[i])
+            context.move(to: point)
+            context.addLine(to: ps[i])
+            context.setLineCap(.round)
+            context.setBlendMode(.normal)
+            context.setLineWidth(brushWidth)
+            context.setStrokeColor(UIColor.red.cgColor)
+            context.strokePath()
             point = ps[i]
             xs.append(ps[i].x)
             ys.append(ps[i].y)
         }
+        
+        self.image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
         
         currentLabelText = label
         drawLabel(at: CGPoint(x: xs.min()!, y: ys.max()!+10))
