@@ -10,25 +10,21 @@ import UIKit
 
 class MyImageView: UIImageView {
     
-    var lastPoint = CGPoint.zero
-    var brushWidth: CGFloat = 5.0
-    var delegate:DrawingDelegate?
-    var shouldDraw = false
+    fileprivate var lastPoint = CGPoint.zero
+    fileprivate var brushWidth: CGFloat = 5.0
+    
     var currentLabelText = ""
+    var shouldDraw = false
+    var delegate:DrawingDelegate?
     
-    var xs = [CGFloat]()
-    var ys = [CGFloat]()
-    var labels = [UILabel]()
-    
-    let drawImage = UIImage()
+    fileprivate var xs = [CGFloat]()
+    fileprivate var ys = [CGFloat]()
+    fileprivate var labels = [UILabel]()
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         
-     
-        if !shouldDraw{
-            return
-        }
+        if !shouldDraw{ return }
         
         if let touch = touches.first {
             let lastPoint = touch.location(in: self)
@@ -42,9 +38,7 @@ class MyImageView: UIImageView {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
     
-        if !shouldDraw{
-            return
-        }
+        if !shouldDraw{ return }
      
         if let touch = touches.first {
             let currentPoint = touch.location(in: self)
@@ -61,40 +55,29 @@ class MyImageView: UIImageView {
         
     }
     
-    func drawLine(from fromPoint: CGPoint, to toPoint: CGPoint) {
-        // 1
+    fileprivate func drawLine(from fromPoint: CGPoint, to toPoint: CGPoint) {
         UIGraphicsBeginImageContext(self.image!.size)
         guard let context = UIGraphicsGetCurrentContext() else {
             return
         }
         self.image?.draw(in: self.bounds)
 
-        // 2
         context.move(to: fromPoint)
         context.addLine(to: toPoint)
         
 
-        // 3
         context.setLineCap(.round)
         context.setBlendMode(.normal)
         context.setLineWidth(brushWidth)
         context.setStrokeColor(UIColor.red.cgColor)
 
-        // 4
         context.strokePath()
-
-        // 5
         self.image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
     }
     
- 
-    
-    
-    
-    
-    
-    func removeLabels(){
+
+    fileprivate func removeLabels(){
         for each in labels{
             each.removeFromSuperview()
         }
@@ -154,7 +137,7 @@ class MyImageView: UIImageView {
         
     }
     
-    func drawLabel(at:CGPoint){
+    fileprivate func drawLabel(at:CGPoint){
         let label = UILabel(frame: CGRect(x: at.x, y: at.y, width: 100, height: 25))
         label.text = currentLabelText
         label.backgroundColor = UIColor.red

@@ -11,23 +11,20 @@ import SnapKit
 
 class DrawingBoardView: UIView,UIScrollViewDelegate,DrawingDelegate {
 
-    var scrollImg: UIScrollView = UIScrollView()
-    var imageView:MyImageView!
-    var imageSize:CGSize!
-    var image:UIImage!
-    var shouldZoom = true
-    var currentContentOffset = CGPoint(x: 0, y: 0)
-    var currentContentInset = UIEdgeInsets.zero
+    fileprivate var scrollImg: UIScrollView = UIScrollView()
+    fileprivate var imageView:MyImageView!
+    fileprivate var imageSize:CGSize!
+    fileprivate var image:UIImage!
+    fileprivate var shouldZoom = true
     
+    fileprivate var currentZoomScale = CGFloat(1)
+    fileprivate var currentContentOffset = CGPoint.zero
+    
+    fileprivate let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var pathManager:PathManager?
-    var zoomScale = CGFloat(1)
-    
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        print("init")
-   
     }
     
     func initImageScrollView(image:UIImage)  {
@@ -51,12 +48,11 @@ class DrawingBoardView: UIView,UIScrollViewDelegate,DrawingDelegate {
         scrollImg.maximumZoomScale = 10.0
         
         reloadImageView()
-
         scrollImg.setZoomScale(0.5, animated: true)
-
     }
+ 
     
-    func reloadImageView(){
+    fileprivate func reloadImageView(){
         if imageView != nil {
              imageView.removeFromSuperview()
         }
@@ -89,7 +85,7 @@ class DrawingBoardView: UIView,UIScrollViewDelegate,DrawingDelegate {
             imageView.drawPath(ps: each.points, label: each.name)
         }
         
-        scrollImg.setZoomScale(zoomScale, animated: false)
+        scrollImg.setZoomScale(currentZoomScale, animated: false)
     }
      
     
@@ -108,17 +104,13 @@ class DrawingBoardView: UIView,UIScrollViewDelegate,DrawingDelegate {
     
     func newPath(name:String){
         print("new path",name)
-         appDelegate.rootController!.showMessage(msg: "缩放已锁定\n请开始绘制路径"+name)
+        appDelegate.rootController!.showMessage(msg: "缩放已锁定\n请开始绘制路径"+name)
         pathManager?.newPath(name: name)
         scrollImg.contentOffset = currentContentOffset
         shouldZoom = false
         imageView.shouldDraw = true
         imageView.currentLabelText = name
         scrollImg.isScrollEnabled = false
-        
- 
-//        scrollImg.contentSize = CGSize.zero
- 
         
     }
     
@@ -127,20 +119,11 @@ class DrawingBoardView: UIView,UIScrollViewDelegate,DrawingDelegate {
     }
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        zoomScale = scrollView.zoomScale
-     
-        
+        currentZoomScale = scrollView.zoomScale
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         currentContentOffset = scrollImg.contentOffset
-        currentContentInset = scrollImg.contentInset
-   
-//        if !shouldZoom {
-//            scrollImg.contentOffset = currentContentOffset
-//        }else{
-//            currentContentOffset = scrollImg.contentOffset
-//        }
     }
 //
     

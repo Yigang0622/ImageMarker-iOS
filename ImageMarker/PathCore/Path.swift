@@ -32,10 +32,10 @@ class Path: NSObject {
     func getJson() -> JSON {
         var arr = [JSON]()
         for each in points{
-            var json: JSON =  ["x":each.x, "y": each.y]
+            let json: JSON =  ["x":each.x, "y": each.y]
             arr.append(json)
         }
-        var json: JSON =  ["name":name, "id": id, "points":arr]
+        let json: JSON =  ["name":name, "id": id, "points":arr]
         return json
     }
 

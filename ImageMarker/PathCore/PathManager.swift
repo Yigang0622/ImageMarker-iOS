@@ -12,9 +12,7 @@ import SwiftyJSON
 class PathManager: NSObject {
     
     var paths = Array<Path>()
-    
     var currentPath:Path!
-    
     var currntId = 1;
     
     func newPath(name:String){
@@ -42,13 +40,9 @@ class PathManager: NSObject {
     
     func export() -> URL{
         print("Path count", paths.count)
-        print(getJson().rawString()!)
-        
-        
-        let file = "export.json"
 
+        let file = "export.json"
         let text = getJson().rawString()!
-        
         var url = URL.init(fileURLWithPath: "x")
 
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {

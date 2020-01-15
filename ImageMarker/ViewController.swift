@@ -23,7 +23,6 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         super.viewDidLoad()
         appDelegate.rootController = self
         messageLabel.alpha = 0
-        
     }
     
     func showMessage(msg:String){
@@ -42,12 +41,11 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         return imageView
     }
     
-    func openGallery()
+    fileprivate func openGallery()
     {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary){
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
-            imagePicker.allowsEditing = true
             imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
             self.present(imagePicker, animated: true, completion: nil)
         }
@@ -61,22 +59,21 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[.originalImage] as? UIImage {
-            // imageViewPic.contentMode = .scaleToFill
               
             self.pathManager = PathManager()
-              drawingBoard = DrawingBoardView()
-              drawingBoard.pathManager = pathManager
+            drawingBoard = DrawingBoardView()
+            drawingBoard.pathManager = pathManager
+
+            self.view.addSubview(drawingBoard)
+
+
+            drawingBoard.snp.makeConstraints { (make) in
+              make.top.equalTo(self.view)
+              make.bottom.equalTo(toolBar.snp.top)
+              make.left.equalTo(self.view)
+              make.right.equalTo(self.view)
+            }
               
-              self.view.addSubview(drawingBoard)
-             
-              
-              drawingBoard.snp.makeConstraints { (make) in
-                  make.top.equalTo(self.view)
-                  make.bottom.equalTo(toolBar.snp.top)
-                  make.left.equalTo(self.view)
-                  make.right.equalTo(self.view)
-              }
-                  
             drawingBoard.initImageScrollView(image: pickedImage)
         }
         picker.dismiss(animated: true, completion: nil)
@@ -88,12 +85,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         let alertController = UIAlertController(title: "Path Name", message: nil, preferredStyle: .alert)
  
         let confirmAction = UIAlertAction(title: "Enter", style: .default) { (_) in
-            
-            //getting the input values from user
             let name = alertController.textFields?[0].text
-         
             self.drawingBoard.newPath(name: name!)
-            
         }
         
  
@@ -104,12 +97,9 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
             textField.placeholder = "name"
         }
         
-        
-        //adding the action to dialogbox
         alertController.addAction(confirmAction)
         alertController.addAction(cancelAction)
         
-        //finally presenting the dialog box
         self.present(alertController, animated: true, completion: nil)
         
         
