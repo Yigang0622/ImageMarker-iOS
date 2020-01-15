@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="ipad10_5" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +11,87 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ImageMarker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GrA-z4-cZ0">
+                                <rect key="frame" x="0.0" y="790" width="1112" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Add Path" image="pencil.tip.crop.circle.badge.plus" catalog="system" id="wnd-7L-Iag">
+                                        <connections>
+                                            <action selector="newPathClicked:" destination="BYZ-38-t0r" id="ml6-7M-R0W"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Remove Path" image="pencil.tip.crop.circle.badge.minus" catalog="system" id="ThT-xV-bez">
+                                        <connections>
+                                            <action selector="removePathClick:" destination="BYZ-38-t0r" id="C7O-aW-o36"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="h4O-GZ-sVL"/>
+                                    <barButtonItem title="Close" image="xmark.circle" catalog="system" id="ddR-BS-jDx">
+                                        <connections>
+                                            <action selector="closeClick:" destination="BYZ-38-t0r" id="VAc-Gm-anC"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Export" image="arrowshape.turn.up.left.circle" catalog="system" id="2lT-dT-9yc">
+                                        <connections>
+                                            <action selector="exportClicked:" destination="BYZ-38-t0r" id="lU1-aN-g9U"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MbH-8a-5Um">
+                                <rect key="frame" x="506" y="367" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="SAR-8b-13L"/>
+                                    <constraint firstAttribute="height" constant="100" id="u4y-Zm-DXP"/>
+                                </constraints>
+                                <state key="normal" title="Add" image="add"/>
+                                <connections>
+                                    <action selector="addClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pA1-Jc-lSp"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKE-cK-QUy">
+                                <rect key="frame" x="812" y="100" width="300" height="80"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="1ic-uF-kEP"/>
+                                    <constraint firstAttribute="height" constant="80" id="N7a-jT-Rcc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="RKE-cK-QUy" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="R0z-cT-rBX"/>
+                            <constraint firstItem="MbH-8a-5Um" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aqe-AB-Mr4"/>
+                            <constraint firstItem="MbH-8a-5Um" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="uTW-Gx-y4j"/>
+                            <constraint firstItem="RKE-cK-QUy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="xXt-yF-tGw"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="messageLabel" destination="RKE-cK-QUy" id="L5i-Og-IAT"/>
+                        <outlet property="toolBar" destination="GrA-z4-cZ0" id="hUY-tX-ZQE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="138.66906474820144" y="120.86330935251799"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="add" width="500" height="500"/>
+        <image name="arrowshape.turn.up.left.circle" catalog="system" width="64" height="60"/>
+        <image name="pencil.tip.crop.circle.badge.minus" catalog="system" width="64" height="50"/>
+        <image name="pencil.tip.crop.circle.badge.plus" catalog="system" width="64" height="50"/>
+        <image name="xmark.circle" catalog="system" width="64" height="60"/>
+    </resources>
 </document>

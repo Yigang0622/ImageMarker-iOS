@@ -13,6 +13,9 @@
 		27FC398D23CEE03000518EBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27FC398C23CEE03000518EBE /* Assets.xcassets */; };
 		27FC399023CEE03000518EBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FC398E23CEE03000518EBE /* LaunchScreen.storyboard */; };
 		27FC399823CEE5A300518EBE /* MyImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC399723CEE5A300518EBE /* MyImageView.swift */; };
+		27FC399A23CF067F00518EBE /* DrawingBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC399923CF067F00518EBE /* DrawingBoardView.swift */; };
+		27FC399C23CF1DA700518EBE /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC399B23CF1DA700518EBE /* Path.swift */; };
+		27FC399E23CF1E3000518EBE /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC399D23CF1E3000518EBE /* PathManager.swift */; };
 		A1345A9B444409CFA0ACADD7 /* Pods_ImageMarker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1E65E71D83C41156C48BA4 /* Pods_ImageMarker.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +28,9 @@
 		27FC398F23CEE03000518EBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		27FC399123CEE03000518EBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27FC399723CEE5A300518EBE /* MyImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyImageView.swift; sourceTree = "<group>"; };
+		27FC399923CF067F00518EBE /* DrawingBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingBoardView.swift; sourceTree = "<group>"; };
+		27FC399B23CF1DA700518EBE /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
+		27FC399D23CF1E3000518EBE /* PathManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
 		39C9D067276E328226D8BA09 /* Pods-ImageMarker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageMarker.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImageMarker/Pods-ImageMarker.release.xcconfig"; sourceTree = "<group>"; };
 		3C1E65E71D83C41156C48BA4 /* Pods_ImageMarker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImageMarker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58D2BBE93DE58CA2C20A6759 /* Pods-ImageMarker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageMarker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImageMarker/Pods-ImageMarker.debug.xcconfig"; sourceTree = "<group>"; };
@@ -72,15 +78,34 @@
 		27FC398223CEE02E00518EBE /* ImageMarker */ = {
 			isa = PBXGroup;
 			children = (
+				27FC39A023CF1E4F00518EBE /* Drawing */,
+				27FC399F23CF1E3700518EBE /* PathCore */,
 				27FC398323CEE02E00518EBE /* AppDelegate.swift */,
 				27FC398723CEE02E00518EBE /* ViewController.swift */,
 				27FC398923CEE02E00518EBE /* Main.storyboard */,
 				27FC398C23CEE03000518EBE /* Assets.xcassets */,
 				27FC398E23CEE03000518EBE /* LaunchScreen.storyboard */,
 				27FC399123CEE03000518EBE /* Info.plist */,
-				27FC399723CEE5A300518EBE /* MyImageView.swift */,
 			);
 			path = ImageMarker;
+			sourceTree = "<group>";
+		};
+		27FC399F23CF1E3700518EBE /* PathCore */ = {
+			isa = PBXGroup;
+			children = (
+				27FC399B23CF1DA700518EBE /* Path.swift */,
+				27FC399D23CF1E3000518EBE /* PathManager.swift */,
+			);
+			path = PathCore;
+			sourceTree = "<group>";
+		};
+		27FC39A023CF1E4F00518EBE /* Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				27FC399723CEE5A300518EBE /* MyImageView.swift */,
+				27FC399923CF067F00518EBE /* DrawingBoardView.swift */,
+			);
+			path = Drawing;
 			sourceTree = "<group>";
 		};
 		C39DEB47C189168C9C44E1EE /* Frameworks */ = {
@@ -205,8 +230,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27FC399A23CF067F00518EBE /* DrawingBoardView.swift in Sources */,
 				27FC398823CEE02E00518EBE /* ViewController.swift in Sources */,
 				27FC398423CEE02E00518EBE /* AppDelegate.swift in Sources */,
+				27FC399C23CF1DA700518EBE /* Path.swift in Sources */,
+				27FC399E23CF1E3000518EBE /* PathManager.swift in Sources */,
 				27FC399823CEE5A300518EBE /* MyImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
