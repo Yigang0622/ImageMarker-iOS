@@ -1,0 +1,6 @@
+framework module Pods_ImageMarker {
+  umbrella header "Pods-ImageMarker-umbrella.h"
+
+  export *
+  module * { export * }
+}
