@@ -27,6 +27,11 @@ class MyImageView: UIImageView {
         if !shouldDraw{ return }
         
         if let touch = touches.first {
+            
+            if touch.type != .pencil {
+                return
+            }
+            
             let lastPoint = touch.location(in: self)
             self.lastPoint = lastPoint
             xs.append(lastPoint.x)
@@ -41,6 +46,11 @@ class MyImageView: UIImageView {
         if !shouldDraw{ return }
      
         if let touch = touches.first {
+            
+            if touch.type != .pencil {
+                return
+            }
+            
             let currentPoint = touch.location(in: self)
             drawLine(from: lastPoint, to: currentPoint)
             lastPoint = currentPoint
